@@ -1,0 +1,247 @@
+﻿=================
+	2016-12-2
+=================
+新浪云
+	微博登录
+	创建新应用
+		php
+		标准环境
+		svn
+		创建应用
+	点击应用管理
+		应用名-应用-代码管理-链接
+
+SVN
+	验证安装成功
+		鼠标右键桌面
+			点击 svn checkout
+				地址栏1：服务器的svn地址
+				地址栏2：本地路径
+				点击ok
+					用户名
+					密码
+			工作中
+				**先下载后上传
+				updata
+				commit
+git
+	桌面右键
+		git Bash here	命令行
+
+	创建账号
+		用户名
+		主邮箱
+		密码 		字母+数字  八位以上
+
+	配置邮箱
+		先去邮箱验证
+		点击头像
+			选择settings
+		点击Emails
+			添加次邮箱
+				add
+			登录次邮箱验证 点击激活
+
+	生成秘钥
+		点击邮箱
+			选择settings
+		点击
+			SSH and GPG keys
+
+		打开git Bash 	命令行
+			输入
+				ssh-keygen -t rsa -C"主邮箱"
+				一路回车
+					生成秘钥完毕
+			用户目录下有一个.ssh文件夹
+				id_rsa
+				id_rsa.pub		√
+				不能使用任何编辑器打开，使用记事本
+
+				把里面的内容复制
+				拿到秘钥复制全部内容
+				点击New SSH keys
+					填写title 	随便（不能用中文）
+					刚才复制的key粘贴过来
+					点击add
+		配置
+			打开git Bash 命令行
+				查看配置
+					git config -l
+				需要配置name和email
+					配置name
+					git config --global user.name "名字"
+					配置email
+					git config --global user.email "主邮箱"
+				验证是否成功
+					git config -l
+						出现
+						user.email=abel1116@sina.cn
+						user.name=abel1116
+						成功
+	把本地项目传到github中
+		点击头像旁边的加号
+			选择 new repository
+
+			填写项目名
+			项目描述
+			Public
+
+			点击Create repository
+		在目录下打开git Bash
+			创建README.md文件
+			命令行
+				git init
+				git add README.md
+				git commit -m "first commit"
+				git remote add origin https://github.com/abel1116/test3.git
+				git push -u origin master
+
+			第二次以后
+				git init
+				git add 文件名   （也可以点,点代表所有）
+				git commit -m "描述信息"
+				git remote add origin https://github.com/abel1116/test3.git
+				git push -u origin master
+		把已有的项目下载到本地
+			点击clone or download
+				点击复制按钮
+			新建一个文件夹
+				代开命令行
+					git init
+					git clone 地址
+			第一时间拉取新代码
+				git pull
+新建个人项目
+	项目名必须是
+		用户名.github.com
+		网站描述尽量写好点
+		创建
+			点击 settings
+			点击 Launch automatic page generator
+        	点击 Continue to layouts
+        	点击 publish page
+
+        	完成
+        		访问：用户名.github.com
+    
+------------------------------------------
+语言特性
+垃圾回收
+	传统语言
+	c
+	arr=malloc(1024);
+	...
+	...
+	...
+	free(arr);
+	内存溢出
+
+js的垃圾回收-生成周期
+局部 	很短 		当函数执行完毕，里面的局部变量会消失
+全局 	很长 	 	当浏览器关闭以后全局变量才会消失
+闭包 	可长可短 	整条作用域链上所有变量都不会消失
+
+function show(){
+	var a=12;
+}
+		没有a
+show();	有a
+		干掉a
+      
+var a=12;
+
+function show(){
+	
+} 		有a
+show();	有a
+		有a
+
+document.onclick=function (){
+	var a=12;
+	show(){
+		var b=5;
+	}
+	show();
+}
+a不会消失
+为了万无一失
+为了性能
+
+
+var a=12;
+window.onload=function (){
+	var b=5;
+	function show(){
+		var c=3;
+	}
+	show();
+};
+作用域链:局部函数调用找自己有没有，自己没有找父级，父级没有，找父级的父级，直到找到全局
+
+
+递归 	大事化小
+
+关于兔子
+
+1.兔子不会死，不吃东西
+2.兔子可以近亲结婚
+3.兔子三个月长大，在长大的那个月就可以下小兔子，一个月下一次一次下一对
+
+1 2 3 4 5 6 7  8  9  10 11 12
+1 1 2 3 5 8 13 21 34 55 89 144
+
+第一年
+144 	1440
+第二年
+46368	463680
+第三年
+14930352	149303520
+第四年
+4807526976	48075269760
+第八年
+51680708854858330000 	 516807088548583300000
+
+三年
+	3算了5702887次
+递归的性能非常高
+
+斐波那契数列
+---------------------------------
+优化
+1.稳定性
+2.扩展性
+3.优化
+
+网络工具
+工具
+	chrome 	F12  NetWork 	想玩好必须有经验
+
+	YSlow 	yahoo 	简单，很好用
+		使用
+			http://yslow.org/mobile
+			YSlow按钮拖到书签上
+
+网络性能
+	合并文件
+		100文件  100链接  100请求  100等待  100接收
+		1文件  1链接  1请求  1等待  1接收
+	使用雪碧图 精灵图  背景图合并
+	压缩 	4kb一个单位
+	gzip 	服务器做的
+	js阻塞加载
+		把js放到body下边
+		放到html代码下面
+			input
+			<div>
+			<script>
+
+			</script>
+			div class="box"
+	DNS 	更快跟稳定更安全
+	懒加载
+	CDN加速
+	使用缓存
+	多域名
+
+执行性能
